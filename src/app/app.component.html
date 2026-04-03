@@ -1,0 +1,10 @@
+<mat-toolbar color="primary">
+  <span>{{ title() }}</span>
+  <span class="toolbar-spacer"></span>
+  <button mat-raised-button color="accent">Nová aukce</button>
+</mat-toolbar>
+
+<main class="app-shell">
+  <p>Aukro</p>
+  <app-auction-list [auctions]="auctions()"></app-auction-list>
+</main>

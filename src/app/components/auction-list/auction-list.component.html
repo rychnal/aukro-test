@@ -1,0 +1,11 @@
+<section class="auction-list">
+  <h2>Aktuální aukce</h2>
+  @for (let auction of auctions(); track auction.id) {
+    <mat-card class="auction-card">
+      <mat-card-title>{{ auction.title }}</mat-card-title>
+      <mat-card-content>
+        <p>Končí: {{ auction.endsAt }}</p>
+      </mat-card-content>
+    </mat-card>
+  }
+</section>

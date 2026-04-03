@@ -1,10 +1,10 @@
 <mat-toolbar color="primary">
   <span>{{ title() }}</span>
   <span class="toolbar-spacer"></span>
-  <button mat-raised-button color="accent">Nová aukce</button>
+  <a mat-button routerLink="/shop" routerLinkActive="nav-active">Shop list</a>
+  <a mat-button routerLink="/basket" routerLinkActive="nav-active">Košík</a>
 </mat-toolbar>
 
 <main class="app-shell">
-  <p>Aukro</p>
-  <app-auction-list [auctions]="auctions()"></app-auction-list>
+  <router-outlet />
 </main>

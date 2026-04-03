@@ -10,3 +10,12 @@
 h1 {
   margin-top: 0;
 }
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.nav-active {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}

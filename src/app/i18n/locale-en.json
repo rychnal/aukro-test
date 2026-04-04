@@ -1,8 +1,8 @@
 {
   "shopList": "Shop list",
   "basket": "Basket",
-  "currentAuctions": "Current offers",
-  "endsAt": "Ends",
+  "products": "Products",
+  "pricePerUnit": "Price per",
   "addToBasket": "Add to basket",
   "remove": "Remove",
   "emptyBasket": "Your basket is empty.",

@@ -1,8 +1,8 @@
 {
   "shopList": "Shop list",
   "basket": "Košík",
-  "currentAuctions": "Aktuálne ponuky",
-  "endsAt": "Končí",
+  "products": "Produkty",
+  "pricePerUnit": "Cena za",
   "addToBasket": "Pridať do košíka",
   "remove": "Odobrať",
   "emptyBasket": "Košík je prázdny.",

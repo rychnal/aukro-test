@@ -1,10 +1,17 @@
-<section class="auction-list">
-  <h2>{{ 'currentAuctions' | translate }}</h2>
-  @for (auction of auctions; track auction.id) {
-    <mat-card class="auction-card">
-      <mat-card-title>{{ auction.title }}</mat-card-title>
-      <mat-card-content>
-        <p>{{ 'endsAt' | translate }}: {{ auction.endsAt }}</p>
+<section class="product-list">
+  <h2>{{ 'products' | translate }}</h2>
+  @for (product of products; track product.id) {
+    <mat-card class="product-card">
+      <mat-card-content class="product-card__content">
+        <div class="product-card__info">
+          <span class="product-card__name">{{ product.name }}</span>
+          <span class="product-card__price">
+            {{ 'pricePerUnit' | translate }} {{ product.unit }}: {{ product.pricePerUnit | price }}
+          </span>
+        </div>
+        <button mat-flat-button color="primary">
+          {{ 'addToBasket' | translate }}
+        </button>
       </mat-card-content>
     </mat-card>
   }

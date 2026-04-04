@@ -1,10 +1,31 @@
-.auction-list {
+.product-list {
   display: grid;
   gap: 16px;
   margin-top: 24px;
 }
 
-.auction-card {
-  padding: 0;
-  border-radius: 10px;
+.product-card {
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px !important;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__name {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  &__price {
+    font-size: 0.875rem;
+    color: #666;
+  }
 }

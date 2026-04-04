@@ -1,8 +1,20 @@
 <mat-toolbar color="primary">
-  <span>{{ title() }}</span>
+  <span>Aukro</span>
   <span class="toolbar-spacer"></span>
-  <a mat-button routerLink="/shop" routerLinkActive="nav-active">Shop list</a>
-  <a mat-button routerLink="/basket" routerLinkActive="nav-active">Košík</a>
+  <a mat-button routerLink="/shop" routerLinkActive="nav-active">{{ 'shopList' | translate }}</a>
+  <a mat-button routerLink="/basket" routerLinkActive="nav-active">{{ 'basket' | translate }}</a>
+
+  <mat-form-field class="toolbar-select" appearance="outline" subscriptSizing="dynamic">
+    <mat-label>{{ 'language' | translate }}</mat-label>
+    <mat-select
+      [value]="languageService.current()"
+      (valueChange)="setLanguage($event)"
+    >
+      @for (lang of languages; track lang.value) {
+        <mat-option [value]="lang.value">{{ lang.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
 </mat-toolbar>
 
 <main class="app-shell">

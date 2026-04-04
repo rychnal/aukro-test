@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { AuctionItem } from '../../models/auction.model';
+import { TranslatePipe } from '../../pipes/translate.pipe';
 
 @Component({
   selector: 'app-shop-list',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, TranslatePipe],
   templateUrl: './shop-list.component.html',
   styleUrl: './shop-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

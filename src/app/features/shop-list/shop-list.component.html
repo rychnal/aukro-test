@@ -1,18 +1,30 @@
 <section class="product-list">
-  <h2>{{ 'products' | translate }}</h2>
-  @for (product of products; track product.id) {
-    <mat-card class="product-card">
-      <mat-card-content class="product-card__content">
-        <div class="product-card__info">
-          <span class="product-card__name">{{ product.name }}</span>
-          <span class="product-card__price">
-            {{ 'pricePerUnit' | translate }} {{ product.unit }}: {{ product.pricePerUnit | price }}
-          </span>
-        </div>
-        <button mat-flat-button color="primary">
-          {{ 'addToBasket' | translate }}
-        </button>
-      </mat-card-content>
-    </mat-card>
+  <h2 class="text-2xl font-semibold">{{ 'products' | translate }}</h2>
+
+  @if (offersResource.isLoading()) {
+    <div class="flex justify-center py-12">
+      <mat-spinner diameter="40" />
+    </div>
+  } @else if (offersResource.error()) {
+    <p class="text-center text-red-700 py-6">Nepodařilo se načíst nabídky.</p>
+  } @else {
+    @for (offer of offersResource.value(); track offer.id) {
+      <mat-card>
+        <mat-card-content class="product-card__content">
+          <img
+            class="product-card__image"
+            [src]="offer.images.lists.medium[0].url"
+            [alt]="offer.name"
+          />
+          <div class="product-card__info">
+            <span class="product-card__name">{{ offer.name }}</span>
+            <span class="product-card__price">{{ offer.buyNowPrice.amount | price }}</span>
+          </div>
+          <button mat-flat-button color="primary">
+            {{ 'addToBasket' | translate }}
+          </button>
+        </mat-card-content>
+      </mat-card>
+    }
   }
 </section>

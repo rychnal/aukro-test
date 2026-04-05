@@ -8,15 +8,23 @@
   &__content {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 16px;
     padding: 16px !important;
+  }
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
   }
 
   &__info {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    flex: 1;
   }
 
   &__name {

@@ -7,5 +7,9 @@
   "remove": "Remove",
   "emptyBasket": "Your basket is empty.",
   "language": "Language",
-  "currency": "Currency"
+  "currency": "Currency",
+  "quantity": "Quantity",
+  "total": "Total",
+  "checkout": "Pay now",
+  "orderPaid": "Paid! Thank you for your order."
 }

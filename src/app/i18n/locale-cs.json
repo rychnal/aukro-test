@@ -7,5 +7,9 @@
   "remove": "Odebrat",
   "emptyBasket": "Košík je prázdný.",
   "language": "Jazyk",
-  "currency": "Měna"
+  "currency": "Měna",
+  "quantity": "Množství",
+  "total": "Celkem",
+  "checkout": "Zaplatit",
+  "orderPaid": "Zaplaceno! Děkujeme za váš nákup."
 }

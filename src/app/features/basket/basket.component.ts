@@ -1,11 +1,26 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { TranslatePipe } from '../../pipes/translate.pipe';
+import { PricePipe } from '../../pipes/price.pipe';
+import { BasketService } from '../../services/basket.service';
+import { LanguageService } from '../../services/language.service';
 
 @Component({
   selector: 'app-basket',
   standalone: true,
-  imports: [TranslatePipe],
+  imports: [MatCardModule, MatButtonModule, TranslatePipe, PricePipe],
   templateUrl: './basket.component.html',
+  styleUrl: './basket.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasketComponent {}
+export class BasketComponent {
+  readonly basketService = inject(BasketService);
+  private readonly languageService = inject(LanguageService);
+
+  checkout(): void {
+    const message = this.languageService.translate()('orderPaid');
+    alert(message);
+    this.basketService.clear();
+  }
+}

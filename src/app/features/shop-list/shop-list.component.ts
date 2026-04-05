@@ -1,24 +1,49 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslatePipe } from '../../pipes/translate.pipe';
 import { PricePipe } from '../../pipes/price.pipe';
 import { OffersService } from '../../services/offers.service';
+import { BasketService } from '../../services/basket.service';
+import { Offer } from '../../models/offer.model';
 
 @Component({
   selector: 'app-shop-list',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatProgressSpinnerModule, TranslatePipe, PricePipe],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, MatProgressSpinnerModule, TranslatePipe, PricePipe],
   templateUrl: './shop-list.component.html',
   styleUrl: './shop-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopListComponent {
   private readonly offersService = inject(OffersService);
+  private readonly basketService = inject(BasketService);
 
   readonly offersResource = rxResource({
     stream: () => this.offersService.getOffers(),
   });
+
+  private readonly quantities = signal<Record<number, number>>({});
+
+  getQuantity(offerId: number): number {
+    return this.quantities()[offerId] ?? 1;
+  }
+
+  increment(offerId: number): void {
+    this.quantities.update((q) => ({ ...q, [offerId]: this.getQuantity(offerId) + 1 }));
+  }
+
+  decrement(offerId: number): void {
+    const current = this.getQuantity(offerId);
+    if (current <= 1) return;
+    this.quantities.update((q) => ({ ...q, [offerId]: current - 1 }));
+  }
+
+  addToBasket(offer: Offer): void {
+    this.basketService.add(offer, this.getQuantity(offer.id));
+    this.quantities.update((q) => ({ ...q, [offer.id]: 1 }));
+  }
 }

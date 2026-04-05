@@ -20,7 +20,16 @@
             <span class="product-card__name">{{ offer.name }}</span>
             <span class="product-card__price">{{ offer.buyNowPrice.amount | price }}</span>
           </div>
-          <button mat-flat-button color="primary">
+          <div class="product-card__quantity">
+            <button mat-icon-button (click)="decrement(offer.id)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <span class="product-card__quantity-value">{{ getQuantity(offer.id) }}</span>
+            <button mat-icon-button (click)="increment(offer.id)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <button mat-flat-button color="primary" (click)="addToBasket(offer)">
             {{ 'addToBasket' | translate }}
           </button>
         </mat-card-content>

@@ -1,4 +1,42 @@
-<section class="p-6">
+<section class="basket">
   <h2 class="text-2xl font-semibold">{{ 'basket' | translate }}</h2>
-  <p class="mt-4 text-gray-500">{{ 'emptyBasket' | translate }}</p>
+
+  @if (basketService.basketItems().length === 0) {
+    <p class="mt-4 text-gray-500">{{ 'emptyBasket' | translate }}</p>
+  } @else {
+    <div class="basket__list">
+      @for (item of basketService.basketItems(); track item.offer.id) {
+        <mat-card>
+          <mat-card-content class="basket__item">
+            <img
+              class="basket__image"
+              [src]="item.offer.images.lists.medium[0].url"
+              [alt]="item.offer.name"
+            />
+            <div class="basket__info">
+              <span class="basket__name">{{ item.offer.name }}</span>
+              <span class="basket__price">{{ item.offer.buyNowPrice.amount | price }}</span>
+            </div>
+            <span class="basket__quantity">{{ 'quantity' | translate }}: {{ item.quantity }}</span>
+            <button mat-stroked-button color="warn" (click)="basketService.remove(item.offer.id)">
+              {{ 'remove' | translate }}
+            </button>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+
+    <mat-card class="basket__summary">
+      <mat-card-content>
+        <span class="text-lg font-semibold">{{ 'total' | translate }}:</span>
+        <span class="text-lg font-semibold">{{ basketService.totalPrice() | price }}</span>
+      </mat-card-content>
+    </mat-card>
+
+    <div class="basket__checkout">
+      <button mat-flat-button color="primary" (click)="checkout()">
+        {{ 'checkout' | translate }}
+      </button>
+    </div>
+  }
 </section>

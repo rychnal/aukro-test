@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/offers/:path*",
+      "destination": "https://aukro.cz/backend-web/api/offers/:path*"
+    }
+  ]
+}

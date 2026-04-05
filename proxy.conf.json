@@ -1,0 +1,7 @@
+{
+  "/api": {
+    "target": "https://aukro.cz/backend-web",
+    "secure": true,
+    "changeOrigin": true
+  }
+}

@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Offer, OffersResponse } from '../models/offer.model';
 
-const API_URL = 'https://aukro.cz/backend-web/api/offers/carouselOffers?ids=7076190539,7087376758,7087202839,7079604952,7086686044,7086829246,7086469857,7086405806,7086269719,6986190712,7086708273,7086632118,7086307306,7086406787&currency=CZK';
+const API_URL = '/api/offers/carouselOffers?ids=7076190539,7087376758,7087202839,7079604952,7086686044,7086829246,7086469857,7086405806,7086269719,6986190712,7086708273,7086632118,7086307306,7086406787&currency=CZK';
   
 @Injectable({ providedIn: 'root' })
 export class OffersService {

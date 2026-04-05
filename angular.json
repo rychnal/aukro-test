@@ -50,7 +50,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "aukro-test:build"
+            "buildTarget": "aukro-test:build",
+            "proxyConfig": "proxy.conf.json"
           }
         },
         "lint": {

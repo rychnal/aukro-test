@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { rxResource } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component, inject, resource, signal } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,8 +21,8 @@ export class ShopListComponent {
   private readonly offersService = inject(OffersService);
   private readonly basketService = inject(BasketService);
 
-  readonly offersResource = rxResource({
-    stream: () => this.offersService.getOffers(),
+  readonly offersResource = resource({
+    loader: () => this.offersService.getOffers(),
   });
 
   private readonly quantities = signal<Record<number, number>>({});

@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of, throwError, Subject } from 'rxjs';
 import { ShopListComponent } from './shop-list.component';
 import { OffersService } from '../../shared/services/offers.service';
 import { BasketService } from '../../shared/services/basket.service';
@@ -38,13 +37,13 @@ describe('ShopListComponent', () => {
   };
 
   it('should create', () => {
-    offersServiceMock.getOffers.mockReturnValue(of([]));
+    offersServiceMock.getOffers.mockResolvedValue([]);
     createComponent();
     expect(fixture.componentInstance).toBeTruthy();
   });
 
   it('should show spinner while loading', () => {
-    offersServiceMock.getOffers.mockReturnValue(new Subject());
+    offersServiceMock.getOffers.mockReturnValue(new Promise(() => {}));
     createComponent();
 
     const spinner = fixture.nativeElement.querySelector('mat-spinner');
@@ -52,7 +51,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should render offer cards after load', async () => {
-    offersServiceMock.getOffers.mockReturnValue(of([mockOffer(1, 'Offer A'), mockOffer(2, 'Offer B')]));
+    offersServiceMock.getOffers.mockResolvedValue([mockOffer(1, 'Offer A'), mockOffer(2, 'Offer B')]);
     createComponent();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -62,7 +61,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should display offer name', async () => {
-    offersServiceMock.getOffers.mockReturnValue(of([mockOffer(1, 'Testovaci nabidka')]));
+    offersServiceMock.getOffers.mockResolvedValue([mockOffer(1, 'Testovaci nabidka')]);
     createComponent();
     await fixture.whenStable();
     fixture.detectChanges();
@@ -71,14 +70,14 @@ describe('ShopListComponent', () => {
   });
 
   it('should default quantity to 1', () => {
-    offersServiceMock.getOffers.mockReturnValue(of([]));
+    offersServiceMock.getOffers.mockResolvedValue([]);
     createComponent();
 
     expect(fixture.componentInstance.getQuantity(42)).toBe(1);
   });
 
   it('should increment quantity', () => {
-    offersServiceMock.getOffers.mockReturnValue(of([]));
+    offersServiceMock.getOffers.mockResolvedValue([]);
     createComponent();
 
     fixture.componentInstance.increment(1);
@@ -86,7 +85,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should decrement quantity but not below 1', () => {
-    offersServiceMock.getOffers.mockReturnValue(of([]));
+    offersServiceMock.getOffers.mockResolvedValue([]);
     createComponent();
 
     fixture.componentInstance.increment(1);
@@ -100,7 +99,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should add offer to basket with correct quantity', () => {
-    offersServiceMock.getOffers.mockReturnValue(of([]));
+    offersServiceMock.getOffers.mockResolvedValue([]);
     createComponent();
 
     fixture.componentInstance.increment(5);
@@ -113,7 +112,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should reset quantity to 1 after adding to basket', () => {
-    offersServiceMock.getOffers.mockReturnValue(of([]));
+    offersServiceMock.getOffers.mockResolvedValue([]);
     createComponent();
 
     fixture.componentInstance.increment(1);
@@ -123,7 +122,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should show error state when offers fail to load', async () => {
-    offersServiceMock.getOffers.mockReturnValue(throwError(() => new Error('Network error')));
+    offersServiceMock.getOffers.mockRejectedValue(new Error('Network error'));
     createComponent();
     await fixture.whenStable();
     fixture.detectChanges();

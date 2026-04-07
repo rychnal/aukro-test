@@ -1,3 +1,23 @@
+.add-btn {
+  min-width: 160px;
+  flex-shrink: 0;
+  padding: 20px 20px !important;
+  transition: background-color 0.2s ease;
+
+  &--added {
+    background-color: #388e3c !important;
+  }
+
+  &__icon {
+    animation: pop 0.2s ease;
+  }
+}
+
+@keyframes pop {
+  0%   { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
 .product-list {
   display: grid;
   gap: 16px;
@@ -41,11 +61,22 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    flex-shrink: 0;
+    padding: 0 8px;
 
-    &-value {
-      min-width: 24px;
+    &-input {
+      width: 48px;
       text-align: center;
+      font-size: 1rem;
       font-weight: 500;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 4px;
+
+      &::-webkit-inner-spin-button,
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+      }
     }
   }
 }

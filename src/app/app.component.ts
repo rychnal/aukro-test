@@ -8,7 +8,9 @@ import { LanguageService } from './services/language.service';
 import { CurrencyService } from './services/currency.service';
 import { Language, LANGUAGES } from './models/language.model';
 import { Currency, CURRENCIES } from './models/currency.model';
+import { MatBadgeModule } from '@angular/material/badge';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { BasketService } from './services/basket.service';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
     MatButtonModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatBadgeModule,
     TranslatePipe,
   ],
   templateUrl: './app.component.html',
@@ -29,6 +32,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
 })
 export class AppComponent {
   readonly languageService = inject(LanguageService);
+  readonly basketService = inject(BasketService);
   readonly currencyService = inject(CurrencyService);
   readonly languages = LANGUAGES;
   readonly currencies = CURRENCIES;

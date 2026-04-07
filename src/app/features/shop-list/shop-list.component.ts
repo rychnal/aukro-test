@@ -27,6 +27,7 @@ export class ShopListComponent {
   });
 
   private readonly quantities = signal<Record<number, number>>({});
+  readonly addedIds = signal<Set<number>>(new Set());
 
   getQuantity(offerId: number): number {
     return this.quantities()[offerId] ?? 1;
@@ -42,8 +43,23 @@ export class ShopListComponent {
     this.quantities.update((q) => ({ ...q, [offerId]: current - 1 }));
   }
 
+  setQuantity(offerId: number, value: string): void {
+    const parsed = parseInt(value, 10);
+    if (!isNaN(parsed) && parsed >= 1) {
+      this.quantities.update((q) => ({ ...q, [offerId]: parsed }));
+    }
+  }
+
   addToBasket(offer: Offer): void {
     this.basketService.add(offer, this.getQuantity(offer.id));
     this.quantities.update((q) => ({ ...q, [offer.id]: 1 }));
+    this.addedIds.update((ids) => new Set(ids).add(offer.id));
+    setTimeout(() => {
+      this.addedIds.update((ids) => {
+        const next = new Set(ids);
+        next.delete(offer.id);
+        return next;
+      });
+    }, 1000);
   }
 }

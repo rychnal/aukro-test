@@ -2,7 +2,11 @@
   <span>Aukro</span>
   <span class="toolbar-spacer"></span>
   <a mat-button routerLink="/shop" routerLinkActive="nav-active">{{ 'shopList' | translate }}</a>
-  <a mat-button routerLink="/basket" routerLinkActive="nav-active">{{ 'basket' | translate }}</a>
+  <a mat-button routerLink="/basket" routerLinkActive="nav-active"
+    [matBadge]="basketService.totalCount()"
+    [matBadgeHidden]="basketService.totalCount() === 0"
+    matBadgeColor="accent"
+  >{{ 'basket' | translate }}</a>
 
   <mat-form-field class="toolbar-select" appearance="outline" subscriptSizing="dynamic">
     <mat-label>{{ 'language' | translate }}</mat-label>

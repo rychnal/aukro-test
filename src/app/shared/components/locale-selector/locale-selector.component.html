@@ -4,7 +4,7 @@
 </button>
 
 <mat-menu #localeMenu="matMenu">
-  <div class="locale-menu__section" (click)="$event.stopPropagation()">
+  <div class="locale-menu__section" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()" tabindex="0">
     <p class="locale-menu__title">{{ 'language' | translate }}</p>
     <mat-radio-group [ngModel]="languageService.currentLanguage()" (ngModelChange)="setLanguage($event)">
       @for (lang of languages; track lang.value) {
@@ -17,7 +17,7 @@
 
   <mat-divider />
 
-  <div class="locale-menu__section" (click)="$event.stopPropagation()">
+  <div class="locale-menu__section" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()" tabindex="0">
     <p class="locale-menu__title">{{ 'currency' | translate }}</p>
     <mat-radio-group [ngModel]="currencyService.current()" (ngModelChange)="setCurrency($event)">
       @for (currency of currencies; track currency.value) {

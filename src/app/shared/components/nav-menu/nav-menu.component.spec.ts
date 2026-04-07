@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { NavMenuComponent } from './nav-menu.component';
 import { BasketService } from '../../services/basket.service';
+import type { Offer } from '../../models/offer.model';
 
 describe('NavMenuComponent', () => {
   let fixture: ComponentFixture<NavMenuComponent>;
@@ -29,7 +30,7 @@ describe('NavMenuComponent', () => {
   });
 
   it('should show correct badge count', () => {
-    const offer = {
+    const offer: Offer = {
       id: 1,
       name: 'Test',
       buyNowPrice: { amount: 100, currency: 'CZK' },
@@ -37,7 +38,7 @@ describe('NavMenuComponent', () => {
       status: 'ACTIVE',
       seoUrl: '',
       images: { lists: { medium: [], medium_preview: [] } },
-    } as any;
+    };
 
     basketService.add(offer, 3);
     fixture.detectChanges();

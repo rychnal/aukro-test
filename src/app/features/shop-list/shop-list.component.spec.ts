@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { of, throwError } from 'rxjs';
+import { of, throwError, Subject } from 'rxjs';
 import { ShopListComponent } from './shop-list.component';
 import { OffersService } from '../../shared/services/offers.service';
 import { BasketService } from '../../shared/services/basket.service';
@@ -22,7 +22,7 @@ describe('ShopListComponent', () => {
 
   beforeEach(async () => {
     localStorage.clear();
-    offersServiceMock = { getOffers: jest.fn() } as any;
+    offersServiceMock = { getOffers: jest.fn() } as unknown as jest.Mocked<OffersService>;
 
     await TestBed.configureTestingModule({
       imports: [ShopListComponent],
@@ -44,7 +44,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should show spinner while loading', () => {
-    offersServiceMock.getOffers.mockReturnValue(new (require('rxjs').Subject)());
+    offersServiceMock.getOffers.mockReturnValue(new Subject());
     createComponent();
 
     const spinner = fixture.nativeElement.querySelector('mat-spinner');

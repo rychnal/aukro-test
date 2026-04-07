@@ -10,6 +10,7 @@ import { TranslatePipe } from '../../pipes/translate.pipe';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, MatButtonModule, MatBadgeModule, TranslatePipe],
   templateUrl: './nav-menu.component.html',
+  styleUrl: './nav-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavMenuComponent {

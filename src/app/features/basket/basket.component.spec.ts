@@ -74,7 +74,7 @@ describe('BasketComponent', () => {
   });
 
   it('should call checkout and clear basket', () => {
-    jest.spyOn(window, 'alert').mockImplementation(jest.fn());
+    jest.spyOn(window, 'alert').mockImplementation(() => undefined);
     basketService.add(mockOffer(1, 'Produkt', 100), 1);
     fixture.detectChanges();
 

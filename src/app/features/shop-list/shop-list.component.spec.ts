@@ -43,7 +43,7 @@ describe('ShopListComponent', () => {
   });
 
   it('should show spinner while loading', () => {
-    offersServiceMock.getOffers.mockReturnValue(new Promise(() => {}));
+    offersServiceMock.getOffers.mockReturnValue(new Promise(() => undefined));
     createComponent();
 
     const spinner = fixture.nativeElement.querySelector('mat-spinner');

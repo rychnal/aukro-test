@@ -4,11 +4,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { TranslatePipe } from '../../pipes/translate.pipe';
-import { PricePipe } from '../../pipes/price.pipe';
-import { OffersService } from '../../services/offers.service';
-import { BasketService } from '../../services/basket.service';
-import { Offer } from '../../models/offer.model';
+import { TranslatePipe } from '../../shared/pipes/translate.pipe';
+import { PricePipe } from '../../shared/pipes/price.pipe';
+import { OffersService } from '../../shared/services/offers.service';
+import { BasketService } from '../../shared/services/basket.service';
+import { Offer } from '../../shared/models/offer.model';
 
 @Component({
   selector: 'app-shop-list',

@@ -1,36 +1,9 @@
-<mat-toolbar color="primary">
-  <span>Aukro</span>
-  <span class="toolbar-spacer"></span>
-  <a mat-button routerLink="/shop" routerLinkActive="nav-active">{{ 'shopList' | translate }}</a>
-  <a mat-button routerLink="/basket" routerLinkActive="nav-active"
-    [matBadge]="basketService.totalCount()"
-    [matBadgeHidden]="basketService.totalCount() === 0"
-    matBadgeColor="accent"
-  >{{ 'basket' | translate }}</a>
-
-  <mat-form-field class="toolbar-select" appearance="outline" subscriptSizing="dynamic">
-    <mat-label>{{ 'language' | translate }}</mat-label>
-    <mat-select
-      [value]="languageService.currentLanguage()"
-      (valueChange)="setLanguage($event)"
-    >
-      @for (lang of languages; track lang.value) {
-        <mat-option [value]="lang.value">{{ lang.label }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field class="toolbar-select" appearance="outline" subscriptSizing="dynamic">
-    <mat-label>{{ 'currency' | translate }}</mat-label>
-    <mat-select
-      [value]="currencyService.current()"
-      (valueChange)="setCurrency($event)"
-    >
-      @for (currency of currencies; track currency.value) {
-        <mat-option [value]="currency.value">{{ currency.label }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+<mat-toolbar color="primary" class="toolbar">
+  <div class="toolbar__row">
+    <app-nav-menu />
+    <span class="toolbar-spacer"></span>
+    <app-locale-selector />
+  </div>
 </mat-toolbar>
 
 <main class="app-shell">

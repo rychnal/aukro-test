@@ -1,0 +1,6 @@
+<a mat-button routerLink="/shop" routerLinkActive="nav-active">{{ 'shopList' | translate }}</a>
+<a mat-button routerLink="/basket" routerLinkActive="nav-active"
+  [matBadge]="basketService.totalCount()"
+  [matBadgeHidden]="basketService.totalCount() === 0"
+  matBadgeColor="accent"
+>{{ 'basket' | translate }}</a>

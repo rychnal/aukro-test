@@ -1,0 +1,30 @@
+<button mat-button [matMenuTriggerFor]="localeMenu" class="locale-btn">
+  <span class="locale-btn__label">{{ currentLocaleLabel() }}</span>
+  <mat-icon>expand_more</mat-icon>
+</button>
+
+<mat-menu #localeMenu="matMenu">
+  <div class="locale-menu__section" (click)="$event.stopPropagation()">
+    <p class="locale-menu__title">{{ 'language' | translate }}</p>
+    <mat-radio-group [ngModel]="languageService.currentLanguage()" (ngModelChange)="setLanguage($event)">
+      @for (lang of languages; track lang.value) {
+        <mat-radio-button class="locale-menu__option" [value]="lang.value">
+          {{ lang.label }}
+        </mat-radio-button>
+      }
+    </mat-radio-group>
+  </div>
+
+  <mat-divider />
+
+  <div class="locale-menu__section" (click)="$event.stopPropagation()">
+    <p class="locale-menu__title">{{ 'currency' | translate }}</p>
+    <mat-radio-group [ngModel]="currencyService.current()" (ngModelChange)="setCurrency($event)">
+      @for (currency of currencies; track currency.value) {
+        <mat-radio-button class="locale-menu__option" [value]="currency.value">
+          {{ currency.label }}
+        </mat-radio-button>
+      }
+    </mat-radio-group>
+  </div>
+</mat-menu>

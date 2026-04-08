@@ -10,7 +10,7 @@
           <mat-card-content class="basket__item">
             <img
               class="basket__image"
-              [src]="item.offer.images.lists.medium[0].url"
+              [src]="item.offer.images.lists.medium[0]?.url ?? ''"
               [alt]="item.offer.name"
             />
             <div class="basket__info">

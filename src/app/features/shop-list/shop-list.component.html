@@ -13,7 +13,7 @@
         <mat-card-content class="product-card__content">
           <img
             class="product-card__image"
-            [src]="offer.images.lists.medium[0].url"
+            [src]="offer.images.lists.medium[0]?.url ?? ''"
             [alt]="offer.name"
           />
           <div class="product-card__info">

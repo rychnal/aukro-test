@@ -10,8 +10,26 @@
   &__item {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 16px !important;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 12px !important;
+
+    @media (min-width: 600px) {
+      flex-wrap: nowrap;
+      gap: 16px;
+      padding: 16px !important;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+
+    @media (min-width: 600px) {
+      width: auto;
+    }
   }
 
   &__image {

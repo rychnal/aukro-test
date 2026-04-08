@@ -17,10 +17,12 @@
               <span class="basket__name">{{ item.offer.name }}</span>
               <span class="basket__price">{{ item.offer.buyNowPrice.amount | price }}</span>
             </div>
-            <span class="basket__quantity">{{ 'quantity' | translate }}: {{ item.quantity }}</span>
-            <button mat-stroked-button color="warn" (click)="basketService.remove(item.offer.id)">
-              {{ 'remove' | translate }}
-            </button>
+            <div class="basket__actions">
+              <span class="basket__quantity">{{ 'quantity' | translate }}: {{ item.quantity }}</span>
+              <button mat-stroked-button color="warn" (click)="basketService.remove(item.offer.id)">
+                {{ 'remove' | translate }}
+              </button>
+            </div>
           </mat-card-content>
         </mat-card>
       }

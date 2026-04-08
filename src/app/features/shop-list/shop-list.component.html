@@ -20,34 +20,36 @@
             <span class="product-card__name">{{ offer.name }}</span>
             <span class="product-card__price">{{ offer.buyNowPrice.amount | price }}</span>
           </div>
-          <div class="product-card__quantity">
-            <button mat-icon-button (click)="decrement(offer.id)">
-              <mat-icon>remove</mat-icon>
-            </button>
-            <input
-              class="product-card__quantity-input"
-              type="number"
-              min="1"
-              [value]="getQuantity(offer.id)"
-              (change)="setQuantity(offer.id, $any($event.target).value)"
-            />
-            <button mat-icon-button (click)="increment(offer.id)">
-              <mat-icon>add</mat-icon>
+          <div class="product-card__actions">
+            <div class="product-card__quantity">
+              <button mat-icon-button (click)="decrement(offer.id)">
+                <mat-icon>remove</mat-icon>
+              </button>
+              <input
+                class="product-card__quantity-input"
+                type="number"
+                min="1"
+                [value]="getQuantity(offer.id)"
+                (change)="setQuantity(offer.id, $any($event.target).value)"
+              />
+              <button mat-icon-button (click)="increment(offer.id)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            <button
+              mat-flat-button
+              color="primary"
+              class="add-btn"
+              [class.add-btn--added]="addedIds().has(offer.id)"
+              (click)="addToBasket(offer)"
+            >
+              @if (addedIds().has(offer.id)) {
+                <mat-icon class="add-btn__icon">check</mat-icon>
+              } @else {
+                {{ 'addToBasket' | translate }}
+              }
             </button>
           </div>
-          <button
-            mat-flat-button
-            color="primary"
-            class="add-btn"
-            [class.add-btn--added]="addedIds().has(offer.id)"
-            (click)="addToBasket(offer)"
-          >
-            @if (addedIds().has(offer.id)) {
-              <mat-icon class="add-btn__icon">check</mat-icon>
-            } @else {
-              {{ 'addToBasket' | translate }}
-            }
-          </button>
         </mat-card-content>
       </mat-card>
     }
